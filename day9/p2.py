@@ -39,7 +39,6 @@ def rearragne_blocks(blocks, occupied_idxs, free_idxs):
                 blocks[free[0]:free[0]+(occupied[1]-occupied[0])] = blocks[occupied[0]:occupied[1]]
                 blocks[occupied[0]:occupied[1]] = ['.' for i in range(occupied[1] - occupied[0])]
                 occupied_idxs.insert(i, (free[0],free[0]+(occupied[1]-occupied[0])))
-                deleted = False
                 for k in range(len(free_idxs)):
                     if k > len(free_idxs)-1:
                         break
@@ -48,7 +47,6 @@ def rearragne_blocks(blocks, occupied_idxs, free_idxs):
                     if k > 0 and free_idxs[k][0] == free_idxs[k-1][1]:
                         free_idxs[k-1] = (free_idxs[k-1][0], free_idxs[k][1])
                         del free_idxs[k]
-                        deleted = True
                 if ((free[1] - free[0]) > (occupied[1] - occupied[0])):
                     free_idxs.insert(j, (free[0]+(occupied[1]-occupied[0]),free[1]))
                 if j > 0 and free_idxs[j-1][1] == free[0]:
